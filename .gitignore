@@ -119,4 +119,4 @@ venv.bak/
 *synctex.gz
 
 # ignore python npz files
-# *.npz
+*.npz
