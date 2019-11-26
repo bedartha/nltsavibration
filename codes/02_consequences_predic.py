@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 """
 Plots consequences of predictability
 ====================================
@@ -6,7 +6,7 @@ Plots consequences of predictability
 """
 
 # Created: Sat Dec 15, 2018  01:08pm
-# Last modified: Thu Feb 21, 2019  08:00pm
+# Last modified: Mon Sep 02, 2019  02:50pm
 # Copyright: Bedartha Goswami <goswami@pik-potsdam.de>
 
 
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     # 2) get noise limit based on variance of main trajectory
     std = np.std(x)
     # 3) get upper and lower bounds on trajectory using erroneous IC
-    ne = n / 2
+    ne = int(n / 2)
     te = t[ne:]
     xe = np.zeros((m, len(te)))
     re = np.random.randn(m)
@@ -83,7 +83,7 @@ if __name__ == "__main__":
     # 2) get noise limit based on variance of main trajectory
     std = np.std(x)
     # 3) get upper and lower bounds on trajectory using erroneous IC
-    ne = n / 2
+    ne = int(n / 2)
     te = t[ne:]
     xe = np.zeros((m, len(te)))
     re = np.random.randn(m)
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     for ax in fig.axes:
         ax.tick_params(size=4, labelsize=tiklabfs,
                        left="on", right="on")
-        ax.set_ylabel("Signal", fontsize=axlabfs, labelpad=10)
+        ax.set_ylabel("Signal (au)", fontsize=axlabfs, labelpad=10)
         ax.set_ylim(-25., 25.)
         ax.set_xlim(0., t[-1])
         ax.set_yticks(np.arange(-20., 20.01, 10.))
@@ -119,13 +119,13 @@ if __name__ == "__main__":
     ax2.tick_params(right="on",
                     labelleft="off", labelright="on")
     fig.text(0.5, 0.05,
-             "Time",
+             "Time (au)",
              ha="center", va="center",
              fontsize=axlabfs,
              )
 
     # save figure
-    FN = "../figs/" + __file__[2:-3] + ".pdf"
+    FN = "../plots/" + __file__[2:-3] + ".pdf"
     fig.savefig(FN, rasterized=True, dpi=1200)
     print("figure saved to: %s" % FN)
 

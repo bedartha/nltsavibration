@@ -6,7 +6,7 @@ Plots the number of NLTSA and RP studies per year
 """
 
 # Created: Fri Dec 14, 2018  03:46pm
-# Last modified: Thu Feb 21, 2019  07:59pm
+# Last modified: Thu Feb 21, 2019  03:12pm
 # Copyright: Bedartha Goswami <goswami@pik-potsdam.de>
 
 
@@ -113,7 +113,7 @@ if __name__ == "__main__":
             transform=ax2.transAxes)
 
     # save figure
-    FN = "../figs/" + __file__[2:-3] + ".pdf"
+    FN = "../plots/" + __file__[2:-3] + ".pdf"
     fig.savefig(FN, rasterized=True, dpi=1200)
     print("figure saved to: %s" % FN)
 

@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 """
 Plots bifurcation diagrams for Lorenz-63 and Henon
 ==================================================
@@ -6,7 +6,7 @@ Plots bifurcation diagrams for Lorenz-63 and Henon
 """
 
 # Created: Sat Dec 15, 2018  03:41pm
-# Last modified: Thu Feb 21, 2019  08:04pm
+# Last modified: Mon Sep 02, 2019  04:03pm
 # Copyright: Bedartha Goswami <goswami@pik-potsdam.de>
 
 
@@ -40,7 +40,7 @@ if __name__ == "__main__":
     # Roessler
     # ---------
     print("Roessler ...")
-    TR = np.linspace(0., 10000., 100000.)
+    TR = np.linspace(0., 1000., 10000.)
     aR = np.arange(0.001, 0.550001, 0.001)
     bR, cR = 2., 4.
     nR = len(aR)
@@ -130,16 +130,18 @@ if __name__ == "__main__":
     ax1.set_ylim(-6.5, 2.5)
     ax1.set_xticks(np.arange(0., 0.55, 0.10))
     ax1.set_yticks(np.arange(-6., 2.01, 2.))
-    ax1.set_xlabel(r"$a$", fontsize=axlabfs, labelpad=5.)
-    ax1.set_ylabel(r"$y$", fontsize=axlabfs, labelpad=5.)
+    ax1.set_xlabel(r"R{\"o}ssler control parameter $a$ (au)",
+                   fontsize=axlabfs, labelpad=5.)
+    ax1.set_ylabel(r"R{\"o}ssler $y$ (au)", fontsize=axlabfs, labelpad=5.)
     ax1.axvline(0.432, ls="--", color="IndianRed", lw=1.00, zorder=20)
     ## Henon map
     ax2.set_xlim(0., 1.41)
     ax2.set_ylim(-1.5, 1.5)
     ax2.set_xticks(np.arange(0., 1.4001, 0.35))
     ax2.set_yticks(np.arange(-1.5, 1.51, 0.5))
-    ax2.set_xlabel(r"$a$", fontsize=axlabfs, labelpad=5.)
-    ax2.set_ylabel(r"$x_t$", fontsize=axlabfs, labelpad=5.)
+    ax2.set_xlabel(r"H{\'e}non control parameter $a$ (au)",
+                   fontsize=axlabfs, labelpad=5.)
+    ax2.set_ylabel(r"He{\'e}non $x_t$ (au)", fontsize=axlabfs, labelpad=5.)
     ax2.axvline(1.4, ls="--", color="IndianRed", lw=1.00, zorder=20)
 
 
@@ -160,7 +162,7 @@ if __name__ == "__main__":
              )
 
     # save figure
-    FN = "../figs/" + __file__[2:-3] + ".pdf"
+    FN = "../plots/" + __file__[2:-3] + ".pdf"
     fig.savefig(FN, rasterized=True, dpi=1200)
     print("figure saved to: %s" % FN)
 

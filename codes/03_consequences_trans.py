@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 """
 Plots consequences of transitions
 =================================
@@ -6,7 +6,7 @@ Plots consequences of transitions
 """
 
 # Created: Sat Dec 15, 2018  03:41pm
-# Last modified: Thu Feb 21, 2019  08:00pm
+# Last modified: Mon Sep 02, 2019  03:11pm
 # Copyright: Bedartha Goswami <goswami@pik-potsdam.de>
 
 
@@ -24,16 +24,14 @@ pl.rcParams["font.family"] = ["serif"]
 if __name__ == "__main__":
     # set up figure
     print("set up figure ...")
-    # fig = pl.figure(figsize=[7.480315, 5.314961])     # 190 mm wide, 135 mm tall 
-    # fig = pl.figure(figsize=[7.480315, 4.724409])     # 190 mm wide, 120 mm tall 
     fig = pl.figure(figsize=[7.480315, 3.937008])     # 190 mm wide, 100 mm tall 
-    lm, bm, wd, ht = 0.10, 0.750, 0.80, 0.225
+    lm, bm, wd, ht = 0.11, 0.750, 0.80, 0.215
     ax1 = fig.add_axes([lm, bm, wd, ht])
-    kh = 2.70
-    ax2 = fig.add_axes([lm - 0.05, bm - kh * ht - 0.10, wd / 2, kh * ht],
-                       projection="3d")
+    kh = 2.60
+    ax2 = fig.add_axes([lm - 0.035, bm - kh * ht - 0.10, wd / 2, kh * ht],
+                       projection="3d", fc="none")
     ax3 = fig.add_axes([lm + wd / 2 + 0.05, bm - kh * ht - 0.10, wd / 2, kh * ht],
-                       projection="3d")
+                       projection="3d", fc="none")
     axlabfs, tiklabfs = 12, 11
     splabs = {
                 ax1: "a",
@@ -47,8 +45,9 @@ if __name__ == "__main__":
     # time vector
     T = np.linspace(0., 600., 600001)
     n = len(T)
-    t1 = T[:n / 2]
-    t2 = T[n / 2:]
+    i = int(n / 2)
+    t1 = T[:i]
+    t2 = T[i:]
     neq = 50000
 
     # spiral-type chaos
@@ -73,18 +72,16 @@ if __name__ == "__main__":
     T = T[:-2 * neq]
     n = len(T)
     k = 25000
-    Xav = np.array([X[i-k/2:i+k/2].mean() for i in range(k / 2, n - k / 2)])
-    # Xav = np.r_[X[:k/2], Xav, X[n - k/2:]]
-    Xsd = np.array([X[i-k/2:i+k/2].var() for i in range(k / 2, n - k / 2)])
-    T_ = T[(k / 2) : (n - k / 2)]
-    # Xsd = np.r_[X[:k/2], Xsd, X[n - k/2:]]
-    # Xsd = np.array([X[i-k/2:i+k/2].std() for i in range(k / 2, n - k / 2)])
+    k_ = int(k / 2)
+    Xav = np.array([X[i-k_:i+k_].mean() for i in range(k_, n - k_)])
+    Xsd = np.array([X[i-k_:i+k_].var() for i in range(k_, n - k_)])
+    T_ = T[(k_) : (n - k_)]
 
     # plot
     print("plot ...")
     ax1.plot(T, X, "-", c=main_clr, label="Signal")
     ax1.plot(T_, Xav, "-", c=clr3, label="Moving average", alpha=0.5)
-    ax1.axvline(T[n / 2], linestyle="--", color="0.5")
+    ax1.axvline(T[int(n/2)], linestyle="--", color="0.5")
     ax1_ = ax1.twinx()
     ax1_.plot(T_, Xsd, "-", c=err_clr, label="Moving variance", alpha=0.5)
     ax2.plot(x1, y1, z1, "-", c=main_clr, lw=1.0, alpha=0.85)
@@ -98,9 +95,9 @@ if __name__ == "__main__":
     ax1.set_yticks(np.arange(-10., 10.1, 10))
     leg = ax1.legend(loc="upper left", ncol=2,
                      bbox_to_anchor=[0.01, 1.05])
-    ax1.set_xlabel("Time", fontsize=axlabfs, labelpad=5.)
-    ax1.set_ylabel(r"$x$", fontsize=axlabfs, labelpad=5.)
-    ax1_.set_ylabel("Variance", fontsize=axlabfs, labelpad=1.)
+    ax1.set_xlabel(r"Time $t$ (au)", fontsize=axlabfs, labelpad=5.)
+    ax1.set_ylabel(r"R{\"o}ssler $x$ (au)", fontsize=axlabfs, labelpad=5.)
+    ax1_.set_ylabel("Variance (au)", fontsize=axlabfs, labelpad=1.)
     leg_ = ax1_.legend(loc="upper right",
                       bbox_to_anchor=[0.99, 1.05])
     for txt in leg.get_texts():
@@ -121,29 +118,32 @@ if __name__ == "__main__":
         ax.zaxis.gridlines.set_alpha(0.5)
         ax.zaxis.set_pane_color((1., 1. ,1., 1.))
         ax.zaxis.gridlines.set_alpha(0.5)
-        ax.set_xlabel(r"$x$", fontsize=axlabfs, labelpad=5.)
-        ax.set_ylabel(r"$y$", fontsize=axlabfs, labelpad=5.)
-        ax.set_zlabel(r"$z$", fontsize=axlabfs, labelpad=5.)
+        ax.set_xlabel(r"R{\"o}ssler $x$ (au)",
+                      fontsize=axlabfs, labelpad=5.)
+        ax.set_ylabel(r"R{\"o}ssler $y$ (au)",
+                      fontsize=axlabfs, labelpad=5.)
+        ax.set_zlabel(r"R{\"o}ssler $z$ (au)",
+                      fontsize=axlabfs, labelpad=5.)
         ax.set_xticks(np.arange(-10., 10.1, 10.))
         ax.set_yticks(np.arange(-10., 10.1, 10.))
     ax1_.set_yticks(np.arange(0., 50.1, 10.))
     ax1_.set_ylim(0., 50.)
 
     # subplot labels
-    ax1.text(-0.10, 1.0,
+    ax1.text(-0.11, 1.0,
              "A",
              ha="right", va="center",
              fontsize=axlabfs, fontweight="bold", family="sans-serif",
              usetex=False,
              transform=ax1.transAxes
              )
-    fig.text(0.05, 0.55,
+    fig.text(0.02, 0.55,
              "B",
              ha="right", va="center",
              fontsize=axlabfs, fontweight="bold", family="sans-serif",
              usetex=False,
              )
-    fig.text(0.55, 0.55,
+    fig.text(0.50, 0.55,
              "C",
              ha="right", va="center",
              fontsize=axlabfs, fontweight="bold", family="sans-serif",
@@ -151,7 +151,7 @@ if __name__ == "__main__":
              )
 
     # save figure
-    FN = "../figs/" + __file__[2:-3] + ".pdf"
+    FN = "../plots/" + __file__[2:-3] + ".pdf"
     fig.savefig(FN, rasterized=True, dpi=1200)
     print("figure saved to: %s" % FN)
 

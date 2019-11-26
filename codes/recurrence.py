@@ -5,7 +5,7 @@ Module for recurrence-based nonlinear time series analysis
 """
 
 # Created: Fri Aug 31, 2018  12:26am
-# Last modified: Thu Jan 31, 2019  11:11pm
+# Last modified: Tue Sep 24, 2019  02:59pm
 # Copyright: Bedartha Goswami <goswami@pik-potsdam.de>
 
 
@@ -143,7 +143,7 @@ def fnn(x, tau, maxdim, r=0.10, pbar_on=True):
         # calculate quantities in Eq. 3.8 of Kantz, Schreiber (2004) 2nd Ed.
         j = d_k_m > 0.
         y = np.zeros(n_m1, dtype="float")
-        y[j] = (d_k_m1[j] / d_k_m[j] > e)
+        y[j] = (d_k_m1[j] / d_k_m[j] > e)   # should be r instead of e = sd / r
         w = (e > d_k_m)
         num = float((y * w).sum())
         den = float(w.sum())

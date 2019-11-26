@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+/bin/bash: :w: command not found
 """
 Plots consequences of synchronization
 =====================================
@@ -6,7 +6,7 @@ Plots consequences of synchronization
 """
 
 # Created: Tue Jan 22, 2019  12:32pm
-# Last modified: Thu Feb 21, 2019  08:17pm
+# Last modified: Tue Nov 26, 2019  12:32pm
 # Copyright: Bedartha Goswami <goswami@pik-potsdam.de>
 
 
@@ -30,6 +30,10 @@ if __name__ == "__main__":
     # set up figure
     print("set up figure ...")
     fig = pl.figure(figsize=[7.480315, 3.937008])     # 140 mm wide, 100 mm tall 
+    # fig = pl.figure(figsize=[7.480315, 5.314961])     # 190 mm wide, 135 mm tall 
+    # fig = pl.figure(figsize=[7.480315, 4.724409])     # 190 mm wide, 120 mm tall 
+    # fig = pl.figure(figsize=[7.480315, 5.905512])     # 190 mm wide, 150 mm tall 
+    # fig = pl.figure(figsize=[7.480315, 3.937008])     # 190 mm wide, 100 mm tall 
     lm1, lm2 = 0.10, 0.30
     wd1, wd2 = 0.20, 0.60
     bm, ht = 0.12, 0.80
@@ -115,16 +119,16 @@ if __name__ == "__main__":
                 transform=ax.transAxes
                 )
     ax1.set_xlim(10., 0.)
-    ax1.set_xlabel(r"Potential $U(x)$", fontsize=axlabfs)
-    ax1.set_ylabel(r"$x$", fontsize=axlabfs)
+    ax1.set_xlabel(r"Potential $U(x)$ (au)", fontsize=axlabfs)
+    ax1.set_ylabel(r"Displacement $x$ (au)", fontsize=axlabfs)
     ax2.set_xlim(t[0], t[-1])
-    ax2.set_xlabel("Time $t$", fontsize=axlabfs)
+    ax2.set_xlabel("Time $t$ (au)", fontsize=axlabfs)
     ax2.set_ylabel(r"$x$", fontsize=axlabfs)
     ax2.yaxis.set_label_position("right")
     ax2.tick_params(labelleft="off", right="on", labelright="on")
 
     # save figure
-    FN = "../figs/" + __file__[2:-3] + ".pdf"
+    FN = "../plots/" + __file__[2:-3] + ".pdf"
     fig.savefig(FN, rasterized=True, dpi=1200)
     print("figure saved to: %s" % FN)
 

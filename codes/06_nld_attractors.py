@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 """
 Plots the Lorenz butterfly and the Henon strange attractors
 ===========================================================
@@ -6,7 +6,7 @@ Plots the Lorenz butterfly and the Henon strange attractors
 """
 
 # Created: Sat Dec 15, 2018  03:41pm
-# Last modified: Thu Feb 21, 2019  08:03pm
+# Last modified: Mon Sep 02, 2019  04:10pm
 # Copyright: Bedartha Goswami <goswami@pik-potsdam.de>
 
 
@@ -110,12 +110,15 @@ if __name__ == "__main__":
     ax1.zaxis.gridlines.set_alpha(0.5)
     ax1.zaxis.set_pane_color((1., 1. ,1., 1.))
     ax1.zaxis.gridlines.set_alpha(0.5)
-    ax1.set_xlabel(r"$x$", fontsize=axlabfs, labelpad=5.)
-    ax1.set_ylabel(r"$y$", fontsize=axlabfs, labelpad=5.)
-    ax1.set_zlabel(r"$z$", fontsize=axlabfs, labelpad=5.)
+    ax1.set_xlabel(r"R{\"o}ssler $x$ (au)",
+                   fontsize=axlabfs, labelpad=5.)
+    ax1.set_ylabel(r"R{\"o}ssler $y$ (au)",
+                   fontsize=axlabfs, labelpad=5.)
+    ax1.set_zlabel(r"R{\"o}ssler $z$ (au)",
+                   fontsize=axlabfs, labelpad=5.)
     ## Henon map
-    ax2.set_xlabel(r"$x_t$", fontsize=axlabfs, labelpad=5.)
-    ax2.set_ylabel(r"$y_t$", fontsize=axlabfs, labelpad=5.)
+    ax2.set_xlabel(r"H{\'e}non $x_t$ (au)", fontsize=axlabfs, labelpad=5.)
+    ax2.set_ylabel(r"H{\'e}non $y_t$ (au)", fontsize=axlabfs, labelpad=5.)
 
 
     # subplot labels
@@ -134,7 +137,7 @@ if __name__ == "__main__":
              )
 
     # save figure
-    FN = "../figs/" + __file__[2:-3] + ".pdf"
+    FN = "../plots/" + __file__[2:-3] + ".pdf"
     fig.savefig(FN, rasterized=True, dpi=1200)
     print("figure saved to: %s" % FN)
 

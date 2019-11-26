@@ -6,7 +6,7 @@ Plots consequences of synchronization
 """
 
 # Created: Thu Jan 17, 2019  10:48am
-# Last modified: Thu Feb 21, 2019  08:06pm
+# Last modified: Thu Jan 17, 2019  03:28pm
 # Copyright: Bedartha Goswami <goswami@pik-potsdam.de>
 
 
@@ -176,7 +176,7 @@ if __name__ == "__main__":
             ax.set_ylim(0., 5000.)
 
     # save figure
-    FN = "../figs/" + __file__[2:-3] + ".pdf"
+    FN = "../plots/" + __file__[2:-3] + ".pdf"
     fig.savefig(FN, rasterized=True, dpi=1200)
     print("figure saved to: %s" % FN)
 

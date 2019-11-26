@@ -1,12 +1,12 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 """
-Plots consequences of synchronization
-=====================================
+Plots consequences on characterization
+======================================
 
 """
 
 # Created: Sat Dec 15, 2018  05:13pm
-# Last modified: Thu Feb 21, 2019  08:01pm
+# Last modified: Mon Sep 02, 2019  03:45pm
 # Copyright: Bedartha Goswami <goswami@pik-potsdam.de>
 
 
@@ -36,10 +36,10 @@ if __name__ == "__main__":
                         wd / 2 - 0.05,
                         kh * ht - 0.05])
     ax3 = fig.add_axes([lm + wd / 2 + 0.03,
-                        bm - kh * ht - 0.20,
+                        bm - kh * ht - 0.15,
                         wd / 2 + 0.05,
                         kh *ht + 0.10],
-                        projection="3d")
+                        projection="3d", fc="none")
     axlabfs, tiklabfs = 12, 11
     sig_clr, sur_clr = "MediumTurquoise", "GoldenRod"
 
@@ -105,8 +105,8 @@ if __name__ == "__main__":
                      bbox_to_anchor=[0.60, 1.05])
     for txt in leg.get_texts():
         txt.set_size(tiklabfs)
-    ax1.set_xlabel("Time", fontsize=axlabfs, labelpad=5.)
-    ax1.set_ylabel("Signal", fontsize=axlabfs, labelpad=5.)
+    ax1.set_xlabel("Time $t$ (au)", fontsize=axlabfs, labelpad=5.)
+    ax1.set_ylabel("Signal (au)", fontsize=axlabfs, labelpad=5.)
     ax1.text(0.01, 0.87,
              "A",
              ha="left", va="center",
@@ -118,8 +118,8 @@ if __name__ == "__main__":
     ax2.set_yscale("log")
     ax2.set_ylim(1E-1, 1E9)
     ax2.set_xlim(fx[0], fx[-1])
-    ax2.set_xlabel("Frequency", fontsize=axlabfs, labelpad=5.)
-    ax2.set_ylabel("Power", fontsize=axlabfs, labelpad=5.)
+    ax2.set_xlabel("Frequency (au)", fontsize=axlabfs, labelpad=5.)
+    ax2.set_ylabel("Power (au)", fontsize=axlabfs, labelpad=5.)
     ax2.text(0.01, 0.95,
              "B",
              ha="left", va="center",
@@ -138,12 +138,12 @@ if __name__ == "__main__":
     ax3.zaxis.gridlines.set_alpha(0.5)
     ax3.zaxis.set_pane_color((1., 1. ,1., 1.))
     ax3.zaxis.gridlines.set_alpha(0.5)
-    ax3.set_xlabel(r"$x$", fontsize=axlabfs, labelpad=5.)
-    ax3.set_ylabel(r"$y$", fontsize=axlabfs, labelpad=5.)
-    ax3.set_zlabel(r"$z$", fontsize=axlabfs, labelpad=5.)
+    ax3.set_xlabel(r"X-component $x$ (au)", fontsize=axlabfs, labelpad=5.)
+    ax3.set_ylabel(r"Y-component $y$ (au)", fontsize=axlabfs, labelpad=5.)
+    ax3.set_zlabel(r"Z-component $z$ (au)", fontsize=axlabfs, labelpad=5.)
     ax3.set_xticks(np.arange(-10., 10.1, 10.))
     ax3.set_yticks(np.arange(-10., 10.1, 10.))
-    fig.text(0.53, 0.60,
+    fig.text(0.50, 0.60,
              "C",
              ha="right", va="center",
              fontsize=axlabfs, fontweight="bold", family="sans-serif",
@@ -151,7 +151,7 @@ if __name__ == "__main__":
              )
 
     # save figure
-    FN = "../figs/" + __file__[2:-3] + ".pdf"
+    FN = "../plots/" + __file__[2:-3] + ".pdf"
     fig.savefig(FN, rasterized=True, dpi=1200)
     print("figure saved to: %s" % FN)
 

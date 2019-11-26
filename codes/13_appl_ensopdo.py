@@ -6,7 +6,7 @@ Plots consequences of synchronization
 """
 
 # Created: Tue Jan 22, 2019  12:32pm
-# Last modified: Thu Feb 21, 2019  08:20pm
+# Last modified: Thu Feb 21, 2019  02:13pm
 # Copyright: Bedartha Goswami <goswami@pik-potsdam.de>
 
 
@@ -700,7 +700,13 @@ def _get_fig():
     """Plots the final figure"""
     # set up figure
     utils._printmsg("set up figure ...", args.verbose)
-    fig = pl.figure(figsize=[7.480315, 7.874016])   # 190 mm wide, 200 mm tall 
+    # fig = pl.figure(figsize=[7.480315, 5.314961])     # 190 mm wide, 135 mm tall 
+    # fig = pl.figure(figsize=[7.480315, 4.724409])     # 190 mm wide, 120 mm tall 
+    # fig = pl.figure(figsize=[7.480315, 5.905512])     # 190 mm wide, 150 mm tall 
+    # fig = pl.figure(figsize=[7.480315, 3.937008])     # 190 mm wide, 100 mm tall 
+    # fig = pl.figure(figsize=[7.480315, 6.692913])     # 190 mm wide, 170 mm tall 
+    # fig = pl.figure(figsize=[7.480315, 7.086614])     # 190 mm wide, 180 mm tall 
+    fig = pl.figure(figsize=[7.480315, 7.874016])     # 190 mm wide, 200 mm tall 
     l = 0.10
     b_ = [0.74, 0.58, 0.42, 0.26, 0.10]
     w, h = 0.75, 0.16
@@ -1000,7 +1006,7 @@ def _get_fig():
 
     # save figure
     FT = "." + args.figtype
-    FN = "../figs/" + __file__[2:-3] +  FT
+    FN = "../plots/" + __file__[2:-3] +  FT
     fig.savefig(FN, rasterized=True, dpi=1200)
     print("figure saved to: %s" % FN)
 
@@ -1040,7 +1046,7 @@ def _parse_args():
                         type=bool, default=False,
                         help="Print verbose messages and progress bars")
     parser.add_argument("-ft", "--figtype",
-                        type=str, default="pdf",
+                        type=str, default="png",
                         help="File type of output figure")
     return parser.parse_args()
 
