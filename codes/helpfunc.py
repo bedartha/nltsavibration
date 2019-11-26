@@ -1,6 +1,3 @@
-# This module assumes that you are in the following directory:
-# ~/Dropbox/Belize\ Climate/Belize_NAO/bedartha/codes/.
-
 import scipy as sp
 from scipy.fftpack import fft, fftfreq
 from scipy import sparse
