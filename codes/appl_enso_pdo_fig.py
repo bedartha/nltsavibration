@@ -6,7 +6,7 @@ Plots consequences of synchronization
 """
 
 # Created: Tue Jan 22, 2019  12:32pm
-# Last modified: Fri Dec 06, 2019  09:05am
+# Last modified: Mon Jan 11, 2021  09:03pm
 # Copyright: Bedartha Goswami <goswami@pik-potsdam.de>
 
 

@@ -6,7 +6,7 @@ A suite of utility functions that assist in carrying out the analysis
 
 """
 # Created: Thu May 26, 2016  03:50PM
-# Last modified: Wed Jan 02, 2019  03:12pm
+# Last modified: Mon Jan 11, 2021  09:03pm
 # Copyright: Bedartha Goswami <goswami@pik-potsdam.de>
 
 from progressbar import ProgressBar, Bar, Percentage, ETA
@@ -29,7 +29,7 @@ def boxfilter(q, filter_width=365, estimate="median"):
     n = len(q)
     filtered = np.zeros(n)
     error = np.zeros((2, n))
-    k = filter_width / 2
+    k = int(filter_width / 2)
     filtered[0] = q[0]
     filtered[-1] = q[-1]
     for i in range(1, n):
